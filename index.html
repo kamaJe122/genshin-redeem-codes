@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>原神兌換碼簿</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* 版面：一本「冒險家手帳」——上方倒數橫幅，下方依狀態分組的兌換卡 */
+:root{
+  --bg:#eef1f6; --paper:#ffffff; --ink:#1c2236; --muted:#5d6680; --line:#d6dbe7;
+  --gold:#a8771a; --gold-soft:#f6ecd4; --done:#2f7a57; --done-soft:#e1f1e8; --warn:#b4471f; --warn-soft:#fbe6dc;
+  --chip:#e7ebf4;
+  --f-display:"Noto Serif TC","Songti TC",serif; --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121726; --paper:#1b2236; --ink:#e9ecf5; --muted:#9aa3bd; --line:#2c3550;
+  --gold:#e6b75a; --gold-soft:#3a3220; --done:#6fd0a0; --done-soft:#1d3a2e; --warn:#f08a62; --warn-soft:#3d2419; --chip:#252e47; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121726; --paper:#1b2236; --ink:#e9ecf5; --muted:#9aa3bd; --line:#2c3550;
+  --gold:#e6b75a; --gold-soft:#3a3220; --done:#6fd0a0; --done-soft:#1d3a2e; --warn:#f08a62; --warn-soft:#3d2419; --chip:#252e47; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,6vw,36px);margin:0;letter-spacing:.02em;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:19px;margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font-family:var(--f-body);font-size:13px;color:var(--muted);font-weight:500}
+.sub{color:var(--muted);margin:4px 0 0;font-size:13.5px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-family:var(--f-mono);font-size:22px;font-variant-numeric:tabular-nums;color:var(--gold)}
+.stat span{font-size:12px;color:var(--muted)}
+.banner{background:var(--gold-soft);border:1px solid var(--gold);border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.banner strong{font-family:var(--f-display)}
+.cd{font-family:var(--f-mono);font-weight:700;font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px}
+button,.btn{font:inherit;font-size:14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button:hover,.btn:hover{border-color:var(--gold)}
+button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:var(--paper);font-weight:700}
+section{display:flex;flex-direction:column;gap:10px}
+.list{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center}
+.card.is-done{background:var(--done-soft);border-color:var(--done)}
+.card.is-dead{opacity:.62}
+.code{font-family:var(--f-mono);font-weight:700;font-size:17px;letter-spacing:.04em;word-break:break-all}
+.reward{font-size:13.5px;color:var(--muted);min-width:0}
+.meta{display:flex;flex-wrap:wrap;gap:6px;grid-column:1/-1}
+.chip{font-size:12px;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--muted)}
+.chip.hot{background:var(--warn-soft);color:var(--warn);font-weight:700}
+.chip.ok{background:var(--done-soft);color:var(--done);font-weight:700}
+.chip.q{background:var(--gold-soft);color:var(--gold)}
+.actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.actions .btn,.actions button{padding:6px 12px;font-size:13px}
+.left{min-width:0;display:flex;flex-direction:column;gap:2px}
+details{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+summary{cursor:pointer;font-weight:700}
+.dead-list{font-family:var(--f-mono);font-size:13px;color:var(--muted);margin-top:8px}
+.note{font-size:13px;color:var(--muted);background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:12px 14px}
+.note ol{margin:6px 0 0;padding-left:20px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;max-width:calc(100% - 32px)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--warn)}
+textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px}
+@media (max-width:520px){.card{grid-template-columns:1fr}.actions{justify-content:flex-start}.stats{gap:6px}.stat{padding:10px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>原神兌換碼簿</h1>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/10/24 20:51（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="sDone">0</b><span>已兌換</span></div>
+    <div class="stat"><b id="sLeft">0</b><span>還沒兌換</span></div>
+    <div class="stat"><b id="sGem">0</b><span>可再拿原石</span></div>
+  </div>
+
+  <div class="banner">
+    <div><strong>7.2 前瞻直播碼</strong><br><span class="sub" style="margin:0">10/26（一）12:00 失效</span></div>
+    <div class="cd" id="cd">--</div>
+  </div>
+
+  <div class="toolbar">
+    <button id="shareAll" class="btn primary" type="button">分享未過期兌換碼給朋友</button>
+    <a class="btn" id="lineAll" target="_blank" rel="noopener">用 LINE 分享</a>
+    <button id="resetBtn" type="button">重設我的紀錄</button>
+  </div>
+  <div id="confirmBox" class="confirm" hidden>確定清除所有兌換紀錄？<button id="yesReset" type="button">清除</button><button id="noReset" type="button">取消</button></div>
+  <textarea id="shareBox" hidden readonly aria-label="分享文字"></textarea>
+
+  <section><h2>限時直播碼 <small>3 組・共 300 原石・官方公布</small></h2><div class="list" id="g-live"></div></section>
+  <section><h2>一般有效碼 <small>多家來源都列為有效，未公布期限</small></h2><div class="list" id="g-on"></div></section>
+  <section><h2>素材碼 <small>沒有原石，但有天賦書／摩拉</small></h2><div class="list" id="g-mat"></div></section>
+  <section><h2>可以試試看 <small>來源不一致，失敗很正常</small></h2><div class="list" id="g-try"></div></section>
+
+  <details><summary>已確認過期（不必再試）</summary>
+    <div class="dead-list">VesnaOnPatrol（10/22 23:59 失效）・Rekviem・Vesna0923・PrimaDonna（7.1 直播碼，9/15 失效）・BALLETCOLLAB・MySnezhnayaCareer・XVIZDH2B9WGX・YOAL3V36XHS7</div>
+  </details>
+
+  <div class="note">兌換條件
+    <ol>
+      <li>冒險等階（Adventure Rank）通常需 10 以上</li>
+      <li>網頁兌換要先登入 HoYoverse 帳號，並選「亞服（Asia）」或「台港澳服（TW, HK, MO）」中你真的有角色的伺服器</li>
+      <li>獎勵寄到遊戲信箱，30 天內要領</li>
+      <li>點「前往兌換」就會記成已兌換；若網站顯示失敗，按「取消標記」即可</li>
+    </ol>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const BASE="https://genshin.hoyoverse.com/zh-tw/gift?code=";
+const LIVE_END=new Date("2026-10-26T12:00:00+08:00");
+const CODES=[
+ {c:"HourofRuin",g:"live",gem:100,r:"原石×100、精鍛用魔礦×10",exp:LIVE_END},
+ {c:"ExpertMitya",g:"live",gem:100,r:"原石×100、大英雄的經驗×5",exp:LIVE_END},
+ {c:"PhotoTime",g:"live",gem:100,r:"原石×100、摩拉×50,000",exp:LIVE_END},
+ {c:"NEEIJB764CA3",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
+ {c:"Y6JYMKV6JKSL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"有一說 10/22 到期"},
+ {c:"EPIC2026",g:"on",gem:40,r:"原石×40、摩拉×20,000、大英雄的經驗×3～5"},
+ {c:"OPERACOLLAB",g:"on",gem:30,r:"原石×30、摩拉×20,000、大英雄的經驗×2"},
+ {c:"6LS3F3LS5K87",g:"on",gem:20,r:"原石×20、千星奇域素材（Geode of Replication）×60～160"},
+ {c:"PNKZ3WLNN8G6",g:"mat",gem:0,r:"三種天賦書各×5"},
+ {c:"PLDXIB886Y1S",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
+ {c:"PJ2KEBRAYSRM",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"新碼，只有 1 個來源"},
+ {c:"GENSHINGIFT",g:"try",gem:50,r:"原石×50、大英雄的經驗×3",tag:"常駐碼，常被兌完"},
+ {c:"Y1INABQB6DEX",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"可能已過期"},
+ {c:"2BJ64QRZ7RT8",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"可能已過期"}
+];
+const KEY="genshin-redeem-log-v1";
+let log={};
+try{log=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){log={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(log))}catch(e){}}
+const fmt=t=>{const d=new Date(t);const p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`};
+const isDead=x=>x.exp&&Date.now()>x.exp.getTime();
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2200)}
+async function copy(text){
+  try{await navigator.clipboard.writeText(text);return true}catch(e){
+    const b=document.getElementById("shareBox");b.value=text;b.hidden=false;b.focus();b.select();return false}
+}
+
+function render(){
+  ["live","on","mat","try"].forEach(g=>document.getElementById("g-"+g).innerHTML="");
+  let done=0,left=0,gem=0;
+  CODES.forEach(x=>{
+    const d=log[x.c],dead=isDead(x);
+    if(d)done++;else if(!dead){left++;if(x.g!=="try")gem+=x.gem}
+    const el=document.createElement("div");
+    el.className="card"+(d?" is-done":"")+(dead?" is-dead":"");
+    const chips=[];
+    if(d)chips.push(`<span class="chip ok">已兌換・${fmt(d)}</span>`);
+    if(dead)chips.push(`<span class="chip">已過期</span>`);
+    else if(x.exp)chips.push(`<span class="chip hot">${fmt(x.exp)} 失效</span>`);
+    if(x.tag)chips.push(`<span class="chip q">${esc(x.tag)}</span>`);
+    el.innerHTML=`<div class="left"><span class="code">${esc(x.c)}</span><span class="reward">${esc(x.r)}</span></div>
+      <div class="actions">
+        ${d?`<button type="button" data-undo="${x.c}">取消標記</button>`:`<a class="btn primary" href="${BASE+encodeURIComponent(x.c)}" target="_blank" rel="noopener" data-go="${x.c}">前往兌換</a>`}
+        <button type="button" data-copy="${x.c}">複製</button>
+        <button type="button" data-share="${x.c}">分享</button>
+      </div>
+      ${chips.length?`<div class="meta">${chips.join("")}</div>`:""}`;
+    document.getElementById("g-"+x.g).appendChild(el);
+  });
+  document.getElementById("sDone").textContent=done;
+  document.getElementById("sLeft").textContent=left;
+  document.getElementById("sGem").textContent=gem;
+  document.getElementById("lineAll").href="https://social-plugins.line.me/lineit/share?text="+encodeURIComponent(shareText());
+}
+
+function shareText(){
+  const live=CODES.filter(x=>!isDead(x)&&x.g!=="try");
+  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n直播碼 10/26 12:00 前要兌換！";
+}
+
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("[data-go],[data-undo],[data-copy],[data-share]");if(!t)return;
+  if(t.dataset.go){log[t.dataset.go]=Date.now();save();setTimeout(render,50);toast("已記錄兌換時間："+fmt(Date.now()))}
+  if(t.dataset.undo){delete log[t.dataset.undo];save();render();toast("已取消標記")}
+  if(t.dataset.copy){const ok=await copy(t.dataset.copy);toast(ok?"已複製 "+t.dataset.copy:"請長按下方文字框複製")}
+  if(t.dataset.share){const x=CODES.find(y=>y.c===t.dataset.share);const ok=await copy(`原神兌換碼 ${x.c}｜${x.r}\n${BASE+x.c}`);toast(ok?"分享連結已複製，貼給朋友吧":"請長按下方文字框複製")}
+});
+document.getElementById("shareAll").onclick=async()=>{const ok=await copy(shareText());toast(ok?"全部兌換連結已複製":"請長按下方文字框複製")};
+document.getElementById("resetBtn").onclick=()=>document.getElementById("confirmBox").hidden=false;
+document.getElementById("noReset").onclick=()=>document.getElementById("confirmBox").hidden=true;
+document.getElementById("yesReset").onclick=()=>{log={};save();render();document.getElementById("confirmBox").hidden=true;toast("紀錄已清除")};
+
+function tick(){
+  const ms=LIVE_END-Date.now(),el=document.getElementById("cd");
+  if(ms<=0){el.textContent="已失效";render();return}
+  const h=Math.floor(ms/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
+  el.textContent=`剩 ${h} 時 ${String(m).padStart(2,"0")} 分 ${String(s).padStart(2,"0")} 秒`;
+}
+render();tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
