@@ -72,7 +72,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 <div class="wrap">
   <header>
     <h1>原神兌換碼簿</h1>
-    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/10/25 08:51（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/10/26 08:57（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
   </header>
 
   <div class="stats">
@@ -95,9 +95,9 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
   <textarea id="shareBox" hidden readonly aria-label="分享文字"></textarea>
 
   <section><h2>限時直播碼 <small>3 組・共 300 原石・官方公布</small></h2><div class="list" id="g-live"></div></section>
-  <section><h2>一般有效碼 <small>5 組・共 210 原石・多家來源都列為有效，未公布期限</small></h2><div class="list" id="g-on"></div></section>
+  <section><h2>一般有效碼 <small>6 組・共 270 原石・多家來源都列為有效，未公布期限</small></h2><div class="list" id="g-on"></div></section>
   <section><h2>素材碼 <small>4 組・沒有原石，但有天賦書／摩拉</small></h2><div class="list" id="g-mat"></div></section>
-  <section><h2>可以試試看 <small>5 組・來源不一致，失敗很正常</small></h2><div class="list" id="g-try"></div></section>
+  <section><h2>可以試試看 <small>4 組・來源不一致，失敗很正常</small></h2><div class="list" id="g-try"></div></section>
 
   <details><summary>已確認過期（不必再試）</summary>
     <div class="dead-list">VesnaOnPatrol（10/22 23:59 失效）・Rekviem・Vesna0923・PrimaDonna（7.1 直播碼，9/15 失效）・BALLETCOLLAB・GS71XAVWDS・GS71YTAICB・MySnezhnayaCareer・XVIZDH2B9WGX・YOAL3V36XHS7</div>
@@ -125,16 +125,16 @@ const CODES=[
  {c:"Y6JYMKV6JKSL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"有一說 10/22 到期"},
  {c:"EPIC2026",g:"on",gem:40,r:"原石×40、摩拉×20,000、大英雄的經驗×3～5"},
  {c:"OPERACOLLAB",g:"on",gem:30,r:"原石×30、摩拉×20,000、大英雄的經驗×2"},
+ {c:"PJ2KEBRAYSRM",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"10/23 新碼"},
  {c:"6LS3F3LS5K87",g:"on",gem:20,r:"原石×20、千星奇域素材（Geode of Replication）×60～160"},
  {c:"OKTCV81F9H8D",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
  {c:"DATG5HG1PL89",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
  {c:"PNKZ3WLNN8G6",g:"mat",gem:0,r:"三種天賦書各×5"},
  {c:"PLDXIB886Y1S",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
- {c:"PJ2KEBRAYSRM",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"新碼，只有 1 個來源"},
  {c:"NEEI8A8341OW",g:"try",gem:0,r:"獎勵未公布",tag:"只有 1 個來源，獎勵不明"},
  {c:"GENSHINGIFT",g:"try",gem:50,r:"原石×50、大英雄的經驗×3",tag:"常駐碼，常被兌完"},
- {c:"Y1INABQB6DEX",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"2 家列有效、2 家列過期"},
- {c:"2BJ64QRZ7RT8",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"2 家列有效、2 家列過期"}
+ {c:"Y1INABQB6DEX",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"最新來源多列為過期"},
+ {c:"2BJ64QRZ7RT8",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"最新來源多列為過期"}
 ];
 const KEY="genshin-redeem-log-v1";
 let log={};
@@ -197,7 +197,7 @@ document.getElementById("yesReset").onclick=()=>{log={};save();render();document
 
 function tick(){
   const ms=LIVE_END-Date.now(),el=document.getElementById("cd");
-  if(ms<=0){el.textContent="已失效";render();return}
+  if(ms<=0){el.textContent="目前沒有進行中的直播碼";if(!tick.done){tick.done=1;render()}return}
   const h=Math.floor(ms/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
   el.textContent=`剩 ${h} 時 ${String(m).padStart(2,"0")} 分 ${String(s).padStart(2,"0")} 秒`;
 }
