@@ -72,7 +72,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 <div class="wrap">
   <header>
     <h1>原神兌換碼簿</h1>
-    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/03 08:55（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/04 08:52（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
   </header>
 
   <div class="stats">
@@ -121,7 +121,7 @@ const CODES=[
  {c:"NEEIJB764CA3",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
  {c:"Y6JYMKV6JKSL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
  {c:"PJ2KEBRAYSRM",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
- {c:"OPERACOLLAB",g:"on",gem:30,r:"原石×30、摩拉×20,000、大英雄的經驗×2",tag:"Gachafeed 11/1 列為過期，其他來源仍列有效"},
+ {c:"OPERACOLLAB",g:"on",gem:30,r:"原石×30、摩拉×20,000、大英雄的經驗×2",tag:"Gachafeed 列為過期，其他 4 個來源仍列有效"},
  {c:"6LS3F3LS5K87",g:"on",gem:20,r:"原石×20、千星奇域素材（Geode of Replication）×60～160",tag:"素材數量各來源不一"},
  {c:"OKTCV81F9H8D",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
  {c:"DATG5HG1PL89",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10"},
@@ -180,7 +180,7 @@ function render(){
 
 function shareText(){
   const live=CODES.filter(x=>!isDead(x)&&x.g!=="try");
-  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n目前沒有進行中的直播碼；7.2 版本 11/4 更新，下次前瞻直播再來看！";
+  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n目前沒有進行中的直播碼；7.2 版本已於 11/4 更新，7.3 前瞻直播日期官方尚未公布，到時再來看！";
 }
 
 document.addEventListener("click",async e=>{
