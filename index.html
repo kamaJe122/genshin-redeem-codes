@@ -72,7 +72,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 <div class="wrap">
   <header>
     <h1>原神兌換碼簿</h1>
-    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/13 08:53（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/14 08:55（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
   </header>
 
   <div class="stats">
@@ -120,12 +120,12 @@ const LIVE_END=new Date("2026-10-26T12:00:00+08:00");
 const CODES=[
  {c:"PJ2KEBRAYSRM",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
  {c:"Y6JYMKV6JKSL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
- {c:"NEEIJB764CA3",g:"on",gem:60,r:"原石×60"},
+ {c:"NEEIJB764CA3",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
  {c:"NEEI8A8341OW",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
  {c:"KeepUpWIthMitya",g:"mat",gem:0,r:"慈善的指引（Guide to Charity）×3、回復體力料理（Energy-Replenishing Meal）×3、Kristallfold×3",exp:new Date("2026-11-16T00:00:00+08:00"),tag:"Gachafeed、Beebom、KodeGG、Pocket Tactics 列有效；Timesaver 標示 11/16 00:00 失效（其他來源未公布期限）"},
  {c:"MIJIQ23V2437",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Gachafeed、Beebom、KodeGG、Timesaver、Pocket Tactics 列有效"},
- {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Gachafeed、KodeGG、Pocket Tactics 列有效；Beebom 未列出，Timesaver 稱僅見於 Reddit"},
  {c:"PNKZ3WLNN8G6",g:"mat",gem:0,r:"三種天賦書（Charity、Fortitude、Glory 的教導）各×5",tag:"Gachafeed、Beebom、KodeGG、Timesaver、Pocket Tactics 列有效"},
+ {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Gachafeed、KodeGG、Giga 列有效；Timesaver 僅列為單一來源（Pocket Tactics），Levvvel 未列出"},
  {c:"OKTCV81F9H8D",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"只有 KodeGG 列有效；Gachafeed 列為過期，Timesaver 僅列為單一來源（素材碼）"},
  {c:"DATG5HG1PL89",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"只有 KodeGG 列有效；Gachafeed 列為過期，Timesaver 僅列為單一來源（素材碼）"},
  {c:"QYJWFB784MFL",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"11/9 新出現，只有 KodeGG 1 個來源"},
@@ -179,7 +179,7 @@ function render(){
 
 function shareText(){
   const live=CODES.filter(x=>!isDead(x)&&x.g!=="try");
-  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n目前沒有進行中的直播碼；7.2 版本已於 11/4 更新，7.3 前瞻直播日期官方尚未公布；KeepUpWithMitya 將於 11/16 00:00 失效，要領請盡早！";
+  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n目前沒有進行中的直播碼；7.2 版本已於 11/4 更新，7.3 前瞻直播日期官方尚未公布；KeepUpWithMitya 將於 11/16 00:00 失效（明天！），要領請盡早！";
 }
 
 document.addEventListener("click",async e=>{
