@@ -72,7 +72,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 <div class="wrap">
   <header>
     <h1>原神兌換碼簿</h1>
-    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/20 08:57（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/24 08:51（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
   </header>
 
   <div class="stats">
@@ -82,7 +82,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
   </div>
 
   <div class="banner">
-    <div><strong>官方限時碼</strong><br><span class="sub" style="margin:0">官方限時碼 ArchonsAnswers（Trial of the Usurper 活動）11/29 00:00 前有效；7.3 前瞻直播日期官方尚未公布（Timesaver 預估 12/4–12/5，非官方）</span></div>
+    <div><strong>官方限時碼</strong><br><span class="sub" style="margin:0">官方限時碼 ArchonsAnswers 11/29 00:00 前有效；7.3 前瞻直播日期官方尚未公布（Timesaver 預估 12/4–12/5，非官方）</span></div>
     <div class="cd" id="cd">--</div>
   </div>
 
@@ -95,12 +95,12 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
   <textarea id="shareBox" hidden readonly aria-label="分享文字"></textarea>
 
   <section><h2>限時直播碼／官方限時碼 <small>1 組・共 40 原石・官方公布 11/29 00:00 失效</small></h2><div class="list" id="g-live"></div></section>
-  <section><h2>一般有效碼 <small>2 組・共 120 原石・多家來源都列為有效，未公布期限</small></h2><div class="list" id="g-on"></div></section>
-  <section><h2>素材碼 <small>3 組・沒有原石，但有天賦書／摩拉／料理</small></h2><div class="list" id="g-mat"></div></section>
-  <section><h2>可以試試看 <small>8 組・來源不一致，失敗很正常</small></h2><div class="list" id="g-try"></div></section>
+  <section><h2>一般有效碼 <small>3 組・共 140 原石・多家來源都列為有效，未公布期限</small></h2><div class="list" id="g-on"></div></section>
+  <section><h2>素材碼 <small>2 組・沒有原石，但有摩拉／經驗／礦石／料理</small></h2><div class="list" id="g-mat"></div></section>
+  <section><h2>可以試試看 <small>1 組・來源不一致，失敗很正常</small></h2><div class="list" id="g-try"></div></section>
 
   <details><summary>已確認過期（不必再試）</summary>
-    <div class="dead-list">NEEI8A8341OW・NEEI986K5X6R（11/19 KodeGG 列為過期，其他來源未列）・KeepUpWithMitya（11/16 00:00 失效，Levvvel 列為過期）・OPERACOLLAB・6LS3F3LS5K87（11/12 Timesaver、Gachafeed 列為過期）・OKTCHX26J57Q・OKTC3QNH61J7・UIVIBUQM6Q8A（11/9 KodeGG 列為過期）・PLDXIB886Y1S・Snezhnaya（11/4 Beebom 列為過期）・EPIC2026（11/1 多數來源列為過期）・DUGODWKRHAKDNJ（10/31 多數來源列為過期）・Y1INABQB6DEX・2BJ64QRZ7RT8（10 月下旬多數來源列為過期）</div>
+    <div class="dead-list">NEEIJB764CA3・Y6JYMKV6JKSL・PNKZ3WLNN8G6（11/24 Timesaver、Pocket Tactics 列為過期）・QYJW92K1DS3X・QYJW21ZVV5Z8・QYJWQVRI39BE・OKTCV81F9H8D・DATG5HG1PL89（11/24 四個來源皆未列為有效）・NEEI8A8341OW・NEEI986K5X6R（11/19 KodeGG 列為過期）・KeepUpWithMitya（11/16 00:00 失效）・OPERACOLLAB・6LS3F3LS5K87（11/12 多數來源列為過期）・OKTCHX26J57Q・OKTC3QNH61J7・UIVIBUQM6Q8A（11/9 列為過期）・EPIC2026（11/1 多數來源列為過期）</div>
   </details>
 
   <div class="note">兌換條件
@@ -118,20 +118,13 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 const BASE="https://genshin.hoyoverse.com/zh-tw/gift?code=";
 const LIVE_END=new Date("2026-11-29T00:00:00+08:00");
 const CODES=[
- {c:"ArchonsAnswers",g:"live",gem:40,r:"原石×40、大英雄的經驗（Hero's Wit）×3、摩拉×30,000",exp:new Date("2026-11-29T00:00:00+08:00"),tag:"HoYoverse 官方公布，Timesaver、GIGA 皆列有效"},
+ {c:"ArchonsAnswers",g:"live",gem:40,r:"原石×40、大英雄的經驗（Hero's Wit）×3、摩拉×30,000",exp:new Date("2026-11-29T00:00:00+08:00"),tag:"HoYoverse 官方公布，Timesaver、GIGA、Pocket Tactics 皆列有效"},
  {c:"PJ2KEBRAYSRM",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
- {c:"Y6JYMKV6JKSL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
- {c:"QYJWFB784MFL",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"11/20 只有 Timesaver 列為有效；Levvvel、GIGA 未列出，先降級"},
- {c:"NEEIJB764CA3",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"Timesaver、Levvvel 列為有效，但 11/19 前 Gachafeed、KodeGG 曾列為過期，先維持試試看"},
- {c:"MIJIQ23V2437",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"11/16 Levvvel、GIGA、11/17 Timesaver 列有效"},
- {c:"PNKZ3WLNN8G6",g:"mat",gem:0,r:"三種天賦書（Charity、Fortitude、Glory 的教導）各×5",tag:"11/16 Levvvel、GIGA、11/17 Timesaver 列有效"},
- {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"11/16 GIGA、11/17 Timesaver 列有效"},
- {c:"OKTCV81F9H8D",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"只有 Timesaver 列為未經證實的單一來源（素材碼）；先前 Gachafeed 曾列為過期"},
- {c:"DATG5HG1PL89",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"只有 Timesaver 列為未經證實的單一來源（素材碼）；先前 Gachafeed 曾列為過期"},
- {c:"QYJW92K1DS3X",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"11/20 查核的 3 個來源皆未列出，僅 KodeGG 舊紀錄（11/8）"},
- {c:"QYJW21ZVV5Z8",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"11/20 查核的 3 個來源皆未列出，僅 KodeGG 舊紀錄（11/4）"},
- {c:"QYJWQVRI39BE",g:"try",gem:60,r:"原石×60、冒險家的經驗×5",tag:"11/20 查核的 3 個來源皆未列出，僅 KodeGG 舊紀錄"},
- {c:"GENSHINGIFT",g:"try",gem:50,r:"原石×50、大英雄的經驗×3",tag:"常駐碼，Timesaver 指出已達兌換上限"}
+ {c:"QYJWFB784MFL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"Timesaver、Pocket Tactics 列有效（11/24 由試試看升級）"},
+ {c:"POYMANSXF877",g:"on",gem:20,r:"原石×20、複製晶（Geodes of Replication）×160",tag:"創作者碼，11/20 新增；Timesaver、GIGA 列有效，創作者卡片註明最晚 12/16 00:00"},
+ {c:"MIJIQ23V2437",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Timesaver、GIGA、Pocket Tactics、Levvvel 皆列有效"},
+ {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Timesaver、GIGA、Pocket Tactics 列有效"},
+ {c:"GENSHINGIFT",g:"try",gem:50,r:"原石×50、大英雄的經驗×3",tag:"常駐碼，Pocket Tactics 稱「時有時無」，Timesaver 列為有爭議，容易顯示已達上限"}
 ];
 const KEY="genshin-redeem-log-v1";
 let log={};
