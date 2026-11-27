@@ -72,7 +72,7 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 <div class="wrap">
   <header>
     <h1>原神兌換碼簿</h1>
-    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/26 08:51（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
+    <p class="sub">國際服／亞服（Asia）適用・資料查核於 2026/11/27 08:51（UTC+8）・點「前往兌換」會自動記下兌換時間</p>
   </header>
 
   <div class="stats">
@@ -118,13 +118,13 @@ textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px;ba
 const BASE="https://genshin.hoyoverse.com/zh-tw/gift?code=";
 const LIVE_END=new Date("2026-11-29T00:00:00+08:00");
 const CODES=[
- {c:"ArchonsAnswers",g:"live",gem:40,r:"原石×40、大英雄的經驗（Hero's Wit）×3、摩拉×30,000",exp:new Date("2026-11-29T00:00:00+08:00"),tag:"HoYoverse 官方公布，Timesaver、GIGA、Pocket Tactics 皆列有效"},
+ {c:"ArchonsAnswers",g:"live",gem:40,r:"原石×40、大英雄的經驗（Hero's Wit）×3、摩拉×30,000",exp:new Date("2026-11-29T00:00:00+08:00"),tag:"HoYoverse 官方公布 11/29 00:00 失效；Gachafeed、GIGA、Pocket Tactics 皆列有效，HoyoBuild 標 11/27 到期，建議今天就兌換"},
  {c:"PJ2KEBRAYSRM",g:"on",gem:60,r:"原石×60、冒險家的經驗×5"},
- {c:"QYJWFB784MFL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"Timesaver、Pocket Tactics 列有效（11/24 由試試看升級）"},
- {c:"POYMANSXF877",g:"on",gem:20,r:"原石×20、複製晶（Geodes of Replication）×160",tag:"創作者碼，11/20 新增；Timesaver、GIGA 列有效，創作者卡片註明最晚 12/16 00:00"},
- {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Timesaver、Gachafeed 列有效"},
- {c:"AZHGG7H2ZQZS",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"11/26 新增：目前只有 Gachafeed（11/25）與粉絲 X 帳號列出，尚無第二個網站確認"},
- {c:"MIJIQ23V2437",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"來源不一致：Timesaver、Beebom 列有效，Gachafeed（11/25）標為過期（11/26 由素材碼降級）"},
+ {c:"QYJWFB784MFL",g:"on",gem:60,r:"原石×60、冒險家的經驗×5",tag:"Gachafeed、Pocket Tactics、HoyoBuild 列有效"},
+ {c:"POYMANSXF877",g:"on",gem:20,r:"原石×20、複製晶（Geodes of Replication）×160",tag:"創作者碼，11/20 新增；Gachafeed、GIGA、HoyoBuild 列有效，創作者卡片註明最晚 12/16 00:00"},
+ {c:"CDOF4X83H7X2",g:"mat",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"Gachafeed、GIGA、Pocket Tactics、HoyoBuild 列有效"},
+ {c:"AZHGG7H2ZQZS",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"11/26 新增：截至 11/27 仍只有 Gachafeed 列出，尚無第二個網站確認"},
+ {c:"MIJIQ23V2437",g:"try",gem:0,r:"摩拉×10,000、冒險家的經驗×10、精鍛用良礦×5、料理×10",tag:"來源不一致：Pocket Tactics、HoyoBuild、GIGA 列有效，Gachafeed（11/26）標為過期"},
  {c:"GENSHINGIFT",g:"try",gem:50,r:"原石×50、大英雄的經驗×3",tag:"常駐碼，Pocket Tactics 稱「時有時無」，Timesaver 列為有爭議，容易顯示已達上限"}
 ];
 const KEY="genshin-redeem-log-v1";
@@ -171,7 +171,7 @@ function render(){
 
 function shareText(){
   const live=CODES.filter(x=>!isDead(x)&&x.g!=="try");
-  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n官方限時碼 ArchonsAnswers 將於 11/29 00:00（UTC+8）失效，請盡早兌換；7.3 前瞻直播日期官方尚未公布（預估 12/4–12/5），公布後會再更新。素材碼與一般碼未公布期限，要領請盡早！";
+  return "🎁 原神兌換碼（國際服／亞服）\n"+live.map(x=>`${x.c}｜${x.r}\n${BASE+x.c}`).join("\n\n")+"\n\n官方限時碼 ArchonsAnswers 將於 11/29 00:00（UTC+8）失效（部分網站標 11/27），請今天就兌換；7.3 前瞻直播日期官方尚未公布（預估 12/4–12/5），公布後會再更新。素材碼與一般碼未公布期限，要領請盡早！";
 }
 
 document.addEventListener("click",async e=>{
